@@ -1,14 +1,11 @@
-/* main-header.module.css */
-
-/* Import Roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #dbe5f1; /* Pale blue background */
-  padding: 10px 20px; /* Adjust padding as needed */
+  background-color: #dbe5f1;
+  padding: 10px 20px;
 }
 
 .logo-container {
@@ -17,28 +14,28 @@
 }
 
 .logo-container h1 {
-  margin-left: 10px; /* Space between logo and title */
-  color: #333; /* Dark text color */
-  font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+  margin-left: 10px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
 }
 
 .logo-container img {
-  width: 50px; /* Adjust width as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 50px;
+  height: auto;
 }
 
 .header-nav a {
-  margin-left: 20px; /* Space between buttons */
-  color: #333; /* Dark text color */
+  margin-left: 20px;
+  color: #333;
   text-decoration: none;
-  padding: 8px 16px; /* Adjust padding as needed */
-  border-radius: 5px; /* Rounded corners */
-  background-color: #2e856e; /* Darker green for buttons */
-  transition: background-color 0.3s ease; /* Smooth transition on hover */
-  font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: #2e856e;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
 }
 
 .header-nav a:hover {
-  background-color: #195a48; /* Darker green on hover */
-  color: #fff; /* White text color on hover */
+  background-color: #195a48;
+  color: #fff;
 }

@@ -8,18 +8,28 @@ const MainHeader = () => {
   return (
     <header className={classes['main-header']}>
       <div className={classes['logo-container']}>
-        <Image src={logo} alt="Logo" width={100} height={100} />
-        <h1>SBG Game Hub</h1>
+        <Link href='/'>
+          <Image src={logo} alt="Logo" width={100} height={100} />
+          <h1>SBG Game Hub</h1>
+        </Link>
       </div>
       <nav className={classes['header-nav']}>
         <Link href="/players">
-          Players
+          Гравці
         </Link>
         <Link href="/collection">
-          Collection
+          Колекція
         </Link>
         <Link href="/poll/current">
-          Active Poll
+          Активне опитування
+        </Link>
+      </nav>
+      <nav className={classes['header-nav']}>
+        <Link href="/register">
+          Зареєструватись
+        </Link>
+        <Link href="/login">
+          Увійти
         </Link>
       </nav>
     </header>
