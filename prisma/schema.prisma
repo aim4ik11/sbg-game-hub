@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String      @id @default(uuid())
+  nickname   String
+  email      String      @unique
+  password   String
+  sessions   Session[]
+  boardGames BoardGame[]
+  gameVotes  GameVote[]
+  timeVote   TimeVote[]
+  dayVotes   DayVote[]
+}
+
+model Session {
+  id         String   @id @default(uuid())
+  expiration DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String   @unique
+}
+
+model BoardGame {
+  id         String       @id @default(uuid())
+  name       String
+  image      String
+  duration   Int
+  min        Int
+  max        Int
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String       @unique
+  GameOnVote GameOnVote[]
+}
+
+model GameVote {
+  id          String       @id @default(uuid())
+  gameOnVotes GameOnVote[]
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String       @unique
+  gamePoll    GamePoll     @relation(fields: [gamePollId], references: [id], onDelete: Cascade)
+  gamePollId  String       @unique
+}
+
+model GameOnVote {
+  id          String    @id @default(uuid())
+  priority    Priority
+  boardGame   BoardGame @relation(fields: [boardGameId], references: [id], onDelete: Cascade)
+  boardGameId String
+  gameVote    GameVote  @relation(fields: [gameVoteId], references: [id], onDelete: Cascade)
+  gameVoteId  String
+}
+
+model GamePoll {
+  id        String     @id @default(uuid())
+  day       DateTime   @default(now())
+  gameVotes GameVote[]
+}
+
+model TimeVote {
+  id         String   @id @default(uuid())
+  start      DateTime @default(now())
+  end        DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String   @unique
+  timePoll   TimePoll @relation(fields: [timePollId], references: [id], onDelete: Cascade)
+  timePollId String   @unique
+}
+
+model TimePoll {
+  id        String     @id @default(uuid())
+  day       DateTime   @default(now())
+  timeVotes TimeVote[]
+}
+
+model DayVote {
+  id        String  @id @default(uuid())
+  days      Day[]
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String  @unique
+  dayPoll   DayPoll @relation(fields: [dayPollId], references: [id], onDelete: Cascade)
+  dayPollId String  @unique
+}
+
+model DayPoll {
+  id       String    @id @default(uuid())
+  start    DateTime  @default(now())
+  dayVotes DayVote[]
+}
+
+enum Priority {
+  HELLYEAH
+  YEAH
+  MEH
+  NUH
+  BRUH
+}
+
+enum Day {
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+  SUN
+}
