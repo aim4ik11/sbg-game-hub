@@ -11,7 +11,7 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="uk">
       <head>
@@ -26,3 +26,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
+
+export default RootLayout;
